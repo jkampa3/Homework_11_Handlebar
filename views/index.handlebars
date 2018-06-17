@@ -1,0 +1,34 @@
+<div>
+    
+    <div class="toBeDevoured">
+
+        <h2 class="mb-4">Waiting to be Devoured</h2>
+        {{#each burgers}} 
+          {{#unless this.devoured}}
+            <form action="/burgers/eat/{{id}}" method="POST">
+                <div class="input-group">
+                    <li class="form-control">{{burger_name}}</li>
+                    <span class="input-group-btn">
+                        <button class="btn" type="submit">DEVOUR</button>
+                    </span>
+                </div>
+            </form>
+          {{/unless}} 
+        {{/each}}
+
+    </div>
+
+    <div class="beenDevoured">
+        
+        <h2 class="mb-4">Devoured</h2>
+        {{#each burgers}} 
+          {{#if this.devoured}}
+            <div class="input-group">
+                <li class="form-control disabled">{{this.burger_name}}</li>
+            </div>
+          {{/if}} 
+        {{/each}}
+
+    </div>
+
+</div>
