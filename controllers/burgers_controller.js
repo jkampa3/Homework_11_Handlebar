@@ -1,7 +1,7 @@
 //requiremnets
 var express = require("express");
 var router = express.Router();
-var burger = require("../models/burger.js");
+var burgers = require("../models/burger.js");
 
 //redirect homepage to burger by default
 router.get('/', function (req, res) {
@@ -20,7 +20,7 @@ router.get("/burger", function (req, res) {
 
 //add new burger to database
 router.post('/burger/create', function (req, res) {
-    burger.create(['name', 'devoured'],
+    burgers.create(['name', 'devoured'],
         [req.body.name, req.body.devoured], function () {
             res.redirect('/burger')
         });
@@ -30,7 +30,7 @@ router.post('/burger/create', function (req, res) {
 router.put('/burger/update/:id', function (req, res) {
     var condition = 'id = ' + req.params.id;
     console.log('condition', condition);
-    burger.update({ 'devoured': req.body.devoured }, condition, function () {
+    burgers.update({ 'devoured': req.body.devoured }, condition, function () {
         res.redirect('/burger');
     });
 });
@@ -39,7 +39,7 @@ router.put('/burger/update/:id', function (req, res) {
 router.delete("/:id", function (req, res) {
     var condition = "id = " + req.params.id;
     console.log('condition', condition);
-    burger.delete(condition, function () {
+    burgers.delete(condition, function () {
         res.redirect("/burger");
     });
 });
